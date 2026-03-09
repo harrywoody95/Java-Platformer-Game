@@ -11,7 +11,7 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
-public class Player extends Entity {
+public class Player extends Character  {
 	int Health = 100;
 	Game game;
 	UserInput userInput;
@@ -331,7 +331,7 @@ public class Player extends Entity {
 	    //then apply new velocity
 	    if(!onGround)
 	    {
-		    Velocity.y += gravity;
+		    Velocity.y += Game.gravity;
 	    }
 
 	    tmp.y = 0.0f;

@@ -23,6 +23,7 @@ public class Game extends JPanel implements Runnable{
 	public final static int TILEROWS = 15;
 	public final static int SCREENWIDTH = TILECOLUMNS * 64; // 20 COLOUMS OF TILES
 	public final static int SCREENHEIGHT = TILEROWS * 64; //15 ROWS OF TILES
+	public final static float gravity = 0.3f;
 	
 	public Vector <Animation> AnimationList = new Vector<Animation>();
 	public Vector <CollisionBox> CollisionBoxList = new Vector<CollisionBox>();
