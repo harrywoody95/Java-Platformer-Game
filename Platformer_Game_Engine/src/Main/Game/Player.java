@@ -54,7 +54,10 @@ public class Player extends Character  {
 
 		Velocity.x = 0;
 
-		if (userInput.Key_D_Pressed) {
+		if(userInput.Key_D_Pressed & userInput.Key_A_Pressed)
+		{currentState = State.Idle;}
+		
+		else if (userInput.Key_D_Pressed) {
 			lastDirection = currentDirection;
 			currentDirection = Direction.Right;
 
@@ -81,7 +84,7 @@ public class Player extends Character  {
 			}
 		}
 
-		if (userInput.Key_A_Pressed) {
+		else if (userInput.Key_A_Pressed) {
 			lastDirection = currentDirection;
 			currentDirection = Direction.Left;
 
@@ -107,6 +110,9 @@ public class Player extends Character  {
 				}
 			}
 		}
+		else
+		{}
+		
 
 		if (!userInput.Key_A_Pressed && !userInput.Key_D_Pressed) {
 			currentState = State.Idle;
