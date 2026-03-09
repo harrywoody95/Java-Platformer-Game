@@ -59,11 +59,25 @@ public class Player extends Entity {
 			currentDirection = Direction.Right;
 
 			if (userInput.Key_Shift_Pressed) {
-				currentState = State.Running;
-				Velocity.x = Speed * 1.5f;
+				if(currentState == State.Jumping && !onGround)
+				{
+					Velocity.x = Speed * 1.5f;
+				}
+				else
+				{
+					currentState = State.Running;
+					Velocity.x = Speed * 1.5f;
+				}
 			} else {
-				currentState = State.Walking;
-				Velocity.x = Speed;
+				if(currentState == State.Jumping && !onGround)
+				{
+					Velocity.x = Speed;
+				}
+				else
+				{
+					currentState = State.Walking;
+					Velocity.x = Speed;
+				}
 			}
 		}
 
@@ -72,11 +86,25 @@ public class Player extends Entity {
 			currentDirection = Direction.Left;
 
 			if (userInput.Key_Shift_Pressed) {
-				currentState = State.Running;
-				Velocity.x = -(Speed * 1.5f);
+				if(currentState == State.Jumping && !onGround)
+				{
+					Velocity.x = -(Speed * 1.5f);
+				}
+				else
+				{
+					currentState = State.Running;
+					Velocity.x = -(Speed * 1.5f);
+				}
 			} else {
-				currentState = State.Walking;
-				Velocity.x = -Speed;
+				if(currentState == State.Jumping && !onGround)
+				{
+					Velocity.x = -Speed;
+				}
+				else
+				{
+					currentState = State.Walking;
+					Velocity.x = -Speed;
+				}
 			}
 		}
 
@@ -85,9 +113,16 @@ public class Player extends Entity {
 		}
 
 		// Jump
-		if (userInput.Key_W_Pressed && onGround) {
+		if (userInput.Key_Space_Pressed && onGround) {
 			Velocity.y = -10;
 			onGround = false;
+			currentState = State.Jumping;
+		}
+		
+		//falling
+		if(!onGround && Velocity.y > 5)
+		{
+			currentState = State.Falling;
 		}
 	}
 
@@ -142,6 +177,79 @@ public class Player extends Entity {
 			v3.add(LeftMove6);
 			v3.add(LeftMove7);
 			v3.add(LeftMove8);
+			
+			Vector<BufferedImage> v4 = new Vector<BufferedImage>();
+			BufferedImage LeftJump1 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_1.png"));
+			BufferedImage LeftJump2 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_2.png"));
+			BufferedImage LeftJump3 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_3.png"));
+			BufferedImage LeftJump4 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_4.png"));
+			BufferedImage LeftJump5 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_5.png"));
+			BufferedImage LeftJump6 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_6.png"));
+			BufferedImage LeftJump7 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_7.png"));
+			BufferedImage LeftJump8 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Jump_8.png"));
+			v4.add(LeftJump1);
+			v4.add(LeftJump2);
+			v4.add(LeftJump3);
+			v4.add(LeftJump4);
+			v4.add(LeftJump5);
+			v4.add(LeftJump6);
+			v4.add(LeftJump7);
+			v4.add(LeftJump8);
+			
+			
+			Vector<BufferedImage> v5 = new Vector<BufferedImage>();
+			BufferedImage RightJump1 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_1.png"));
+			BufferedImage RightJump2 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_2.png"));
+			BufferedImage RightJump3 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_3.png"));
+			BufferedImage RightJump4 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_4.png"));
+			BufferedImage RightJump5 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_5.png"));
+			BufferedImage RightJump6 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_6.png"));
+			BufferedImage RightJump7 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_7.png"));
+			BufferedImage RightJump8 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Jump_8.png"));
+			v5.add(RightJump1);
+			v5.add(RightJump2);
+			v5.add(RightJump3);
+			v5.add(RightJump4);
+			v5.add(RightJump5);
+			v5.add(RightJump6);
+			v5.add(RightJump7);
+			v5.add(RightJump8);
+			
+			Vector<BufferedImage> v6 = new Vector<BufferedImage>();
+			BufferedImage RightFall1 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Fall_1.png"));
+			BufferedImage RightFall2 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Fall_2.png"));
+			
+			//THESE ARE MORE SUITED TO FALLING FROM HIGH HEIGHT
+			
+			//BufferedImage RightFall3 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Fall_3.png"));
+			//BufferedImage RightFall4 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Fall_4.png"));
+			//BufferedImage RightFall5 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Fall_5.png"));
+			//BufferedImage RightFall6 = ImageIO.read(getClass().getResourceAsStream("/player/Right_Fall_6.png"));
+
+			v6.add(RightFall1);
+			v6.add(RightFall2);
+			//v6.add(RightFall3);
+			//v6.add(RightFall4);
+			//v6.add(RightFall5);
+			//v6.add(RightFall6);
+
+			Vector<BufferedImage> v7 = new Vector<BufferedImage>();
+			BufferedImage LeftFall1 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Fall_1.png"));
+			BufferedImage LeftFall2 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Fall_2.png"));
+			
+			//THESE ARE MORE SUITED TO FALLING FROM HIGH HEIGHT
+			
+			// BufferedImage LeftFall3 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Fall_3.png"));
+			// BufferedImage LeftFall4 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Fall_4.png"));
+			// BufferedImage LeftFall5 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Fall_5.png"));
+			// BufferedImage LeftFall6 = ImageIO.read(getClass().getResourceAsStream("/player/Left_Fall_6.png"));
+
+			v7.add(LeftFall1);
+			v7.add(LeftFall2);
+			//v7.add(LeftFall3);
+			//v7.add(LeftFall4);
+			//v7.add(LeftFall5);
+			//v7.add(LeftFall6);
 
 			Animation a = Main.Engine.Sprite.CreateSpriteAnimation("RightIdle", v, 15);
 			Animation a1 = Main.Engine.Sprite.CreateSpriteAnimation("LeftIdle", v1, 15);
@@ -149,6 +257,10 @@ public class Player extends Entity {
 			Animation a3 = Main.Engine.Sprite.CreateSpriteAnimation("LeftWalk", v3, 7);
 			Animation a4 = Main.Engine.Sprite.CreateSpriteAnimation("RightRun", v2, 5);
 			Animation a5 = Main.Engine.Sprite.CreateSpriteAnimation("LeftRun", v3, 5);
+			Animation a6 = Main.Engine.Sprite.CreateSpriteAnimation("LeftJump", v4, 5);
+			Animation a7 = Main.Engine.Sprite.CreateSpriteAnimation("RightJump", v5, 5);
+			Animation a8 = Main.Engine.Sprite.CreateSpriteAnimation("RightFall", v6, 5);
+			Animation a9 = Main.Engine.Sprite.CreateSpriteAnimation("LeftFall", v7, 5);
 
 			g.AnimationList.add(a);
 			g.AnimationList.add(a1);
@@ -156,6 +268,10 @@ public class Player extends Entity {
 			g.AnimationList.add(a3);
 			g.AnimationList.add(a4);
 			g.AnimationList.add(a5);
+			g.AnimationList.add(a6);
+			g.AnimationList.add(a7);
+			g.AnimationList.add(a8);
+			g.AnimationList.add(a9);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -188,7 +304,21 @@ public class Player extends Entity {
 			} else {
 				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightRun", true);
 			}
+		} else if (currentState == State.Jumping) {
+			if (currentDirection == Direction.Left) {
+				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftJump", false);
+			} else {
+				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightJump", false);
+			}
 		}
+		else if (currentState == State.Falling) {
+			if (currentDirection == Direction.Left) {
+				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftFall", false);
+			} else {
+				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightFall", false);
+			}
+		}
+
 
 		lastState = currentState;
 	}

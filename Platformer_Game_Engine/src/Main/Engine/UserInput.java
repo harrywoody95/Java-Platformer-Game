@@ -10,12 +10,14 @@ public class UserInput implements KeyListener {
 	public boolean Key_A_Pressed = false;
 	public boolean Key_D_Pressed = false;
 	public boolean Key_Shift_Pressed = false;
+	public boolean Key_Space_Pressed = false;
 	
 	public boolean Key_W_Released = false;
 	public boolean Key_S_Released = false;
 	public boolean Key_A_Released = false;
 	public boolean Key_D_Released = false;
 	public boolean Key_Shift_Released = false;
+	public boolean Key_Space_Released = false;
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -29,6 +31,8 @@ public class UserInput implements KeyListener {
 		Key_S_Released = false;
 		Key_D_Released = false;
 		Key_A_Released = false;
+		Key_Shift_Released = false;
+		Key_Space_Released = false;
 		
 		int key = e.getKeyCode();
 		
@@ -48,6 +52,9 @@ public class UserInput implements KeyListener {
 			break;
 		case KeyEvent.VK_SHIFT:
 			Key_Shift_Pressed = true;
+			break;
+		case KeyEvent.VK_SPACE:
+			Key_Space_Pressed = true;
 			break;
 		default:
 			break;
@@ -81,6 +88,10 @@ public class UserInput implements KeyListener {
 		case KeyEvent.VK_SHIFT:
 			Key_Shift_Pressed = false;
 			Key_Shift_Released = true;
+			break;
+		case KeyEvent.VK_SPACE:
+			Key_Space_Pressed = false;
+			Key_Space_Released = true;
 			break;
 		default:
 			break;

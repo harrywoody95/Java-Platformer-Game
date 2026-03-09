@@ -4,5 +4,6 @@ public enum State {
 	Idle,
 	Walking,
 	Running,
-	Jumping
+	Jumping,
+	Falling,
 }
