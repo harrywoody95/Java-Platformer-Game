@@ -1,7 +1,10 @@
 #name #path
-Jump /audio/jump.wav true
-Fall /audio/fall.wav true
-Open /audio/open.wav true
-Run /audio/run.wav true
-Walk /audio/walk.wav true
+Jump /audio/jump.wav ptrue
+Fall /audio/fall.wav ptrue
+Open /audio/open.wav ptrue
+Run /audio/run.wav ptrue
+Walk /audio/walk.wav ptrue
 Music /audio/music.wav false
+CommonItem /audio/commonItem.wav true
+RareItem /audio/rareItem.wav true
+VeryRareItem /audio/veryRareItem.wav true

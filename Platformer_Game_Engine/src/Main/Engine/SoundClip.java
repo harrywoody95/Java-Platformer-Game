@@ -11,11 +11,13 @@ public class SoundClip {
 	String Name;
 	URL SoundURL;
 	Clip Clip;
+	boolean isPlayerSoundEffect;
 	boolean isSoundEffect;
-	public SoundClip(String Name, String Path, boolean isSoundEffect)
+	public SoundClip(String Name, String Path, boolean isPlayerSoundEffect, boolean isSoundEffect)
 	{
 	    this.Name = Name;
 	    this.SoundURL = getClass().getResource(Path);
+	    this.isPlayerSoundEffect = isPlayerSoundEffect;
 	    this.isSoundEffect = isSoundEffect;
 
 	    try {

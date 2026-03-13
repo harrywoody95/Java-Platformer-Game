@@ -237,7 +237,7 @@ public class Player extends Character  {
 
 	    if(currentState == State.Looting)
 	    {
-	    	OpenLootables(GetLootablesInRange(g, 100), g.Player);
+	    	OpenLootables(GetLootablesInRange(g, 100), g);
 	    }
 	    
 	    SetPlayerAnimation(g);
@@ -291,11 +291,11 @@ public class Player extends Character  {
 	  
 	  }
 	 
-	 public void OpenLootables(Vector<Chest> c, Player p)
+	 public void OpenLootables(Vector<Chest> c, Game g)
 	 {
 		 for(Chest chest : c)
 		 {
-			 chest.LootChest(p);
+			 chest.LootChest(g);
 		 }
 	 }
 	 
@@ -371,32 +371,32 @@ public class Player extends Character  {
 		 if(currentState == State.Jumping && lastState != currentState)
 		 {
 
-					g.SoundManager.StopAllSoundEffects();
+					g.SoundManager.StopPlayerSoundEffects();
 			 
 			g.SoundManager.PlaySoundEffect("Jump");
 		 }
 		 if(currentState == State.Walking && lastState != currentState)
 		 {
 
-				 g.SoundManager.StopAllSoundEffects();
+				 g.SoundManager.StopPlayerSoundEffects();
 			 
 			g.SoundManager.PlayMusic("Walk");
 		 }
 		 if(currentState == State.Idle && lastState != currentState)
 		 {
-			 g.SoundManager.StopAllSoundEffects();
+			 g.SoundManager.StopPlayerSoundEffects();
 		 }
 		 if(currentState == State.Running && lastState != currentState)
 		 {
 
-				 g.SoundManager.StopAllSoundEffects();
+				 g.SoundManager.StopPlayerSoundEffects();
 			 
 			g.SoundManager.PlayMusic("Run");
 		 }
 		 if(currentState == State.Looting && lastState != currentState)
 		 {
 
-				 g.SoundManager.StopAllSoundEffects();
+				 g.SoundManager.StopPlayerSoundEffects();
 			 
 			g.SoundManager.PlaySoundEffect("Open");
 		 }

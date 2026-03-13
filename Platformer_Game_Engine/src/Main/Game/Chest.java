@@ -59,16 +59,17 @@ public class Chest extends Entity{
 		}
 	}
 	
-	public void LootChest(Player p)
+	public void LootChest(Game g)
 	{
 		if(!Opened)
 		{
 			for(Item i : Loot)
 			{
-				p.Inventory.add(i);
+				g.Player.Inventory.add(i);
 			}
 		}
 		Opened = true;
+		g.SoundManager.PlaySoundEffect("CommonItem");
 	}
 	
 	public void Update(Game g)

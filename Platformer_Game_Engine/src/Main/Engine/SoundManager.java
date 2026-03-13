@@ -39,13 +39,17 @@ public class SoundManager {
 				String Name = s[0].strip();
 				String Path = s[1].strip();
 				SoundClip m; 
-				if (s[2].strip().equals("true"))
+				if (s[2].strip().equals("ptrue"))
 				{
-					m = new SoundClip(Name, Path, true);
+					m = new SoundClip(Name, Path, true, false);
+				}
+				else if(s[2].strip().equals("true"))
+				{
+					m = new SoundClip(Name, Path, false, true);
 				}
 				else
 				{
-					m = new SoundClip(Name, Path, false);
+					m = new SoundClip(Name, Path, false, false);
 				}
 				
 				MusicList.add(m);
@@ -102,9 +106,9 @@ public class SoundManager {
 		}
 	}
 	
-	public void StopAllSoundEffects() {
+	public void StopPlayerSoundEffects() {
 	    for (SoundClip c : MusicList) {
-	        if (c.isSoundEffect && c.Clip != null) {
+	        if (c.isPlayerSoundEffect && c.Clip != null) {
 	            c.Clip.loop(0);            // cancel looping
 	            Stop(c.Clip);           // stop playback
 	        }
