@@ -1,0 +1,17 @@
+#Name #path #frames #speed
+#Player
+RightIdle /player/Right_Idle 2 15
+LeftIdle /player/Left_Idle 2 15
+RightWalk /player/Right_Run 8 7
+LeftWalk /player/Left_Run 8 7
+RightRun /player/Right_Run 8 5
+LeftRun /player/Left_Run 8 5
+RightJump /player/Right_Jump 8 5
+LeftJump /player/Left_Jump 8 5
+RightFall /player/Right_Fall 2 5
+LeftFall /player/Left_Fall 2 5
+RightLoot /player/Right_Loot 5 5
+LeftLoot /player/Left_Loot 5 5
+#Chest
+CommonChestOpen /lootable/Chest_Common 7 2
+RareChestOpen /lootable/Chest_Rare 7 2

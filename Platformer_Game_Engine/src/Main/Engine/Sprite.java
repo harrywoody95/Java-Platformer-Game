@@ -80,7 +80,8 @@ public class Sprite {
 		}
 		for (Animation a : game.AnimationList)
 		{
-			if (a.Name == Name)
+			if (a.Name.equals(Name))
+
 			{
 				Animation = a;
 				break;

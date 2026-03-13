@@ -7,10 +7,14 @@ import Main.Game.*;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Vector;
 
-
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class Game extends JPanel implements Runnable{
@@ -44,6 +48,7 @@ public class Game extends JPanel implements Runnable{
 		this.setDoubleBuffered(true);
 		this.addKeyListener(UserInput);
 		this.setFocusable(true);
+		LoadAnimations();
 	}
 
 	public void StartGameThread()
@@ -130,5 +135,55 @@ public class Game extends JPanel implements Runnable{
 		 
 		g2.dispose();
 	}
+	
+	public void LoadAnimations()
+	{
 
+			try {
+			InputStream is = getClass().getResourceAsStream("/animation/animations.txt");
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
+			String Line = br.readLine();
+			while (Line != null)
+			{
+				if (Line.charAt(0) == '#')
+				{
+					Line = br.readLine();
+					continue;
+				}
+				
+				else
+				{
+					String[] s = Line.split(" ");
+					
+					String Name = s[0].strip();
+					String Path = s[1].strip();
+					int Frames = Integer.parseInt(s[2].strip());
+					int Speed = Integer.parseInt(s[3].strip());
+					
+					Vector <BufferedImage> v = new Vector<BufferedImage>();
+					
+					for(int x = 0; x < Frames; x++)
+					{
+						BufferedImage i = ImageIO.read(getClass().getResourceAsStream(Path + "_" + Integer.toString(x + 1) + ".png"));
+						v.add(i);
+					}
+					
+					Animation a = Main.Engine.Sprite.CreateSpriteAnimation(Name, v, Speed);
+					this.AnimationList.add(a);
+					System.out.println(Name);
+					Line = br.readLine();
+				}
+		
+			}
+					br.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			for(Animation a : AnimationList)
+			{
+				System.out.println(a.Name);
+			}
+			System.out.println(AnimationList.size());
+	}
 }

@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Animation {
 
-	String Name;
+	public String Name;
 	int Speed;
 	Vector <BufferedImage> Frames = new Vector<BufferedImage>();
 }
