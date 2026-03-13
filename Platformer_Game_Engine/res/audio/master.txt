@@ -1,0 +1,7 @@
+#name #path
+Jump /audio/jump.wav true
+Fall /audio/fall.wav true
+Open /audio/open.wav true
+Run /audio/run.wav true
+Walk /audio/walk.wav true
+Music /audio/music.wav false

@@ -39,7 +39,7 @@ public class Game extends JPanel implements Runnable{
 	public Player Player = new Player(this, UserInput);
 	Chest c = new Chest(700, 782, Rarity.Rare, this);
 	public Camera Camera = new Camera();
-
+	public SoundManager SoundManager = new SoundManager();
 	public boolean DrawDebugBoxes = true;
 	
 	public Game() {
@@ -49,6 +49,7 @@ public class Game extends JPanel implements Runnable{
 		this.addKeyListener(UserInput);
 		this.setFocusable(true);
 		LoadAnimations();
+		SoundManager.PlayMusic("Music");
 	}
 
 	public void StartGameThread()
@@ -138,7 +139,6 @@ public class Game extends JPanel implements Runnable{
 	
 	public void LoadAnimations()
 	{
-
 			try {
 			InputStream is = getClass().getResourceAsStream("/animation/animations.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -170,7 +170,6 @@ public class Game extends JPanel implements Runnable{
 					
 					Animation a = Main.Engine.Sprite.CreateSpriteAnimation(Name, v, Speed);
 					this.AnimationList.add(a);
-					System.out.println(Name);
 					Line = br.readLine();
 				}
 		
@@ -180,10 +179,5 @@ public class Game extends JPanel implements Runnable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			for(Animation a : AnimationList)
-			{
-				System.out.println(a.Name);
-			}
-			System.out.println(AnimationList.size());
 	}
 }

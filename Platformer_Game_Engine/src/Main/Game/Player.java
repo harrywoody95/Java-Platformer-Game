@@ -57,7 +57,10 @@ public class Player extends Character  {
 
 		//stops the player being able to moonwalk
 		if(userInput.Key_D_Pressed & userInput.Key_A_Pressed)
-		{currentState = State.Idle;}
+		{
+			//lastState = currentState;
+			currentState = State.Idle;
+		}
 		
 		
 		
@@ -65,11 +68,13 @@ public class Player extends Character  {
 		if(userInput.Key_E_Pressed && onGround)
 		{
 			if(IsLootableInRange(g, 100))
+			//lastState = currentState;
 			currentState = State.Looting;
 			return;
 		}
 		if(currentState == State.Looting && Sprite.Animation.Finished)
 		{
+			//lastState = currentState;
 			currentState = State.Idle;
 		}
 		
@@ -88,6 +93,7 @@ public class Player extends Character  {
 				}
 				else
 				{
+					//lastState = currentState;
 					currentState = State.Running;
 					Velocity.x = Speed * 1.5f;
 				}
@@ -98,6 +104,7 @@ public class Player extends Character  {
 				}
 				else
 				{
+					//lastState = currentState;
 					currentState = State.Walking;
 					Velocity.x = Speed;
 				}
@@ -116,6 +123,7 @@ public class Player extends Character  {
 				}
 				else
 				{
+					//lastState = currentState;
 					currentState = State.Running;
 					Velocity.x = -(Speed * 1.5f);
 				}
@@ -126,6 +134,7 @@ public class Player extends Character  {
 				}
 				else
 				{
+					//lastState = currentState;
 					currentState = State.Walking;
 					Velocity.x = -Speed;
 				}
@@ -136,6 +145,7 @@ public class Player extends Character  {
 		
 		//no input
 		if (!userInput.Key_A_Pressed && !userInput.Key_D_Pressed && currentState != State.Looting) {
+			//lastState = currentState;
 			currentState = State.Idle;
 		}
 
@@ -143,13 +153,14 @@ public class Player extends Character  {
 		if (userInput.Key_Space_Pressed && onGround) {
 			Velocity.y = -10;
 			onGround = false;
+			//lastState = currentState;
 			currentState = State.Jumping;
-			
 		}
 		
 		//falling
 		if(!onGround && Velocity.y > 5)
 		{
+			//lastState = currentState;
 			currentState = State.Falling;
 		}
 	}
@@ -201,9 +212,6 @@ public class Player extends Character  {
 				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightLoot", false);
 			}
 		}
-
-
-		lastState = currentState;
 	}
 
 
@@ -234,6 +242,8 @@ public class Player extends Character  {
 	    
 	    SetPlayerAnimation(g);
 	    Sprite.Update();
+	    UpdatePlayerSounds(g);
+		lastState = currentState;
 	}
 
 	public void UpdateCollisionBox() {
@@ -291,8 +301,19 @@ public class Player extends Character  {
 	 
 	 public boolean IsLootableInRange(Game g, int range)
 	 {
-		 for(Entity e : g.EntityList)
+		 for(Entity entity : g.EntityList)
 		 {
+			 if(entity.Type != EntityType.Chest)
+			 {
+				 continue;
+			 }
+			 
+			 Chest e = (Chest)(entity);
+			 if(e.Opened)
+			 {
+				 continue;
+			 }
+			 
 			 boolean LootableInRangeX = false;
 			 boolean LootableInRangeY = false;
 			 Vec2f entityPos = e.PositionCenter();
@@ -341,6 +362,44 @@ public class Player extends Character  {
 			 }
 		 }
 		 return false;
+	 }
+	 
+	 public void UpdatePlayerSounds(Game g)
+	 {
+		 System.out.println("State: " + lastState + " -> " + currentState);
+
+		 if(currentState == State.Jumping && lastState != currentState)
+		 {
+
+					g.SoundManager.StopAllSoundEffects();
+			 
+			g.SoundManager.PlaySoundEffect("Jump");
+		 }
+		 if(currentState == State.Walking && lastState != currentState)
+		 {
+
+				 g.SoundManager.StopAllSoundEffects();
+			 
+			g.SoundManager.PlayMusic("Walk");
+		 }
+		 if(currentState == State.Idle && lastState != currentState)
+		 {
+			 g.SoundManager.StopAllSoundEffects();
+		 }
+		 if(currentState == State.Running && lastState != currentState)
+		 {
+
+				 g.SoundManager.StopAllSoundEffects();
+			 
+			g.SoundManager.PlayMusic("Run");
+		 }
+		 if(currentState == State.Looting && lastState != currentState)
+		 {
+
+				 g.SoundManager.StopAllSoundEffects();
+			 
+			g.SoundManager.PlaySoundEffect("Open");
+		 }
 	 }
 	 
 }
