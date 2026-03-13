@@ -9,7 +9,6 @@ import Math.Vec2f;
 
 public class CollisionManager {
 
-    // Simple interval overlap on one axis
     private boolean rangesOverlap(float aMin, float aMax, float bMin, float bMax) {
         return aMax > bMin && aMin < bMax;
     }
@@ -112,7 +111,8 @@ public class CollisionManager {
         outVelocity.x = vx;
         outVelocity.y = vy;
 
-        if (hitY && currentVelocity.y > 0) 
+        
+        if (hitY && currentVelocity.y >= 0) 
         {
             e.onGround = true;
         } 

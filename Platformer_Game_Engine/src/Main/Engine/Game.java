@@ -27,11 +27,13 @@ public class Game extends JPanel implements Runnable{
 	
 	public Vector <Animation> AnimationList = new Vector<Animation>();
 	public Vector <CollisionBox> CollisionBoxList = new Vector<CollisionBox>();
+	public Vector <Entity> EntityList = new Vector<Entity>();
 	public CollisionManager CollisionManager = new CollisionManager();
 	public GameMap map = new GameMap(this);
 	Thread GameThread;
 	UserInput UserInput = new UserInput();
-	Player Player = new Player(this, UserInput);
+	public Player Player = new Player(this, UserInput);
+	Chest c = new Chest(700, 782, Rarity.Rare, this);
 	public Camera Camera = new Camera();
 
 	public boolean DrawDebugBoxes = true;
@@ -101,7 +103,10 @@ public class Game extends JPanel implements Runnable{
 	{
 		UserInput.Update(this);
 		Camera.Update(Player);
-		Player.Update(this);
+		for(Entity e : EntityList)
+		{
+			e.Update(this);
+		}
 	}
 	
 	public void paintComponent (Graphics g)
@@ -109,7 +114,10 @@ public class Game extends JPanel implements Runnable{
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		map.DrawMap(g2, this);
-		Player.Draw(g2, this);
+		for(Entity e : EntityList )
+		{
+			e.Draw(g2, this);
+		}
 		if(DrawDebugBoxes)
 		{
 			 for(CollisionBox b : CollisionBoxList) 
@@ -117,6 +125,8 @@ public class Game extends JPanel implements Runnable{
 				 g2.drawRect((int)(b.box.Left - Camera.cameraX), (int)(b.box.Top - Camera.cameraY), (int)(b.box.Right - b.box.Left), (int)(b.box.Bottom - b.box.Top) ); 
 			 }
 		}
+		
+		
 		 
 		g2.dispose();
 	}

@@ -5,5 +5,5 @@ public class AnimationState {
 		int CurrentTick;
 		int CurrentFrameIndex;
 		boolean Loop;
-		
+		public boolean Finished = false;
 	}

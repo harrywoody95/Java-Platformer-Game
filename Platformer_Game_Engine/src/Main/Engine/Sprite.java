@@ -8,11 +8,11 @@ import Math.Vec2f;
 
 public class Sprite {
 	public BufferedImage Texture = null;
-	AnimationState Animation;
+	public AnimationState Animation;
 	String Name;
 	Vec2f Position;
-	Vec2 Bitsize;
-	int Scale;
+	public Vec2 Bitsize;
+	public int Scale;
 	
 	public Sprite(BufferedImage image, String name, Vec2 bitsize, Vec2f position, int scale, AnimationState animation)
 	{
@@ -27,7 +27,7 @@ public class Sprite {
 	public void Update()
 	{
 
-		if (Animation == null)
+		if (Animation == null || Animation.Finished == true || Animation.Animation == null)
 		{
 			return;
 		}
@@ -48,7 +48,7 @@ public class Sprite {
 				}
 				else
 				{
-					Animation = null;
+					Animation.Finished = true;
 					return;
 				}
 			}
@@ -103,4 +103,5 @@ public class Sprite {
 
 		Sprite.Texture = Sprite.Animation.Animation.Frames.get(0);
 	}
+	
 }
