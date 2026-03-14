@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import Main.Engine.AnimationState;
 import Main.Engine.Game;
 import Main.Engine.Sprite;
+import Main.Game.Item.Item;
 import Math.Vec2;
 
 public class Chest extends Entity{
@@ -49,7 +50,7 @@ public class Chest extends Entity{
 			Collision.box.Bottom = Position.y + 50;
 			Collision.box.Right = Position.x + 47;
 			
-			Type = EntityType.Chest;
+			EntityType = EntityType.Chest;
 			
 			g.EntityList.add(this);
 			g.CollisionBoxList.add(Collision);
@@ -65,11 +66,11 @@ public class Chest extends Entity{
 		{
 			for(Item i : Loot)
 			{
-				g.Player.Inventory.add(i);
+				g.Player.Inventory.Inventory.add(i);
 			}
 		}
 		Opened = true;
-		g.SoundManager.PlaySoundEffect("CommonItem");
+		g.SoundManager.PlaySoundEffect("VeryRareItem");
 	}
 	
 	public void Update(Game g)

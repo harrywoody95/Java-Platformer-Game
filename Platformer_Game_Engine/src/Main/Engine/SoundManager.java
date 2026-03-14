@@ -62,7 +62,7 @@ public class SoundManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		System.out.println(MusicList.size());
+		//System.out.println(MusicList.size());
 	}
 	
 	public void Play(Clip c)
@@ -109,8 +109,8 @@ public class SoundManager {
 	public void StopPlayerSoundEffects() {
 	    for (SoundClip c : MusicList) {
 	        if (c.isPlayerSoundEffect && c.Clip != null) {
-	            c.Clip.loop(0);            // cancel looping
-	            Stop(c.Clip);           // stop playback
+	            c.Clip.loop(0);
+	            Stop(c.Clip);
 	        }
 	    }
 	}

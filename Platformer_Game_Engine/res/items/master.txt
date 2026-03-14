@@ -1,0 +1,34 @@
+Common Pistol
+Rare Pistol
+Very Rare Pistol
+Common Shotgun
+Rare Shotgun
+Very Rare Shotgun
+Common Maching Gun
+Rare Machine Gun
+Very Rare Machine Gun
+Simple Gun Part
+Average Gun Part
+Advanced Gun Part
+Simple Gun Module
+Average Gun Module
+Advanced Gun Module
+Health Shot
+Stamina Shot
+Sheild Recharge
+Pistol Ammo
+Shotgun Ammo
+Rifle Ammo
+Gun Powder
+Metal
+Gold Chain
+Gold Bar
+Diamond Ring
+Diamond
+Pocket Watch
+Common Sheild
+Rare Sheild
+Very Rare Sheild
+Simple Sheild Part
+Average Sheild Part
+Advanced Sheild Part

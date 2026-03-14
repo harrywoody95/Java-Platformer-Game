@@ -12,8 +12,8 @@ public class Entity {
 	public CollisionBox Collision = new CollisionBox(0,0,0,0);
 	public Vec2f Position = new Vec2f(0,0);
 	public boolean onGround = true;
-	Sprite Sprite;
-	public EntityType Type;
+	public Sprite Sprite;
+	public EntityType EntityType;
 	
 	public void Draw(Graphics2D g2, Game g) {
 		g2.drawImage(Sprite.Texture, (int)(Position.x - g.Camera.cameraX), (int)(Position.y - g.Camera.cameraY), Sprite.Bitsize.x * Sprite.Scale, Sprite.Bitsize.y * Sprite.Scale, null);
