@@ -10,6 +10,7 @@ public class UserInput implements KeyListener {
 	public boolean Key_A_Pressed = false;
 	public boolean Key_D_Pressed = false;
 	public boolean Key_E_Pressed = false;
+	public boolean Key_F_Pressed = false;
 	public boolean Key_Shift_Pressed = false;
 	public boolean Key_Space_Pressed = false;
 	
@@ -18,6 +19,7 @@ public class UserInput implements KeyListener {
 	public boolean Key_A_Released = false;
 	public boolean Key_D_Released = false;
 	public boolean Key_E_Released = false;
+	public boolean Key_F_Released = false;
 	public boolean Key_Shift_Released = false;
 	public boolean Key_Space_Released = false;
 	@Override
@@ -33,6 +35,8 @@ public class UserInput implements KeyListener {
 		Key_S_Released = false;
 		Key_D_Released = false;
 		Key_A_Released = false;
+		Key_E_Released = false;
+		Key_F_Released = false;
 		Key_Shift_Released = false;
 		Key_Space_Released = false;
 		
@@ -54,6 +58,9 @@ public class UserInput implements KeyListener {
 			break;
 		case KeyEvent.VK_E:
 			Key_E_Pressed = true;
+			break;
+		case KeyEvent.VK_F:
+			Key_F_Pressed = true;
 			break;
 		case KeyEvent.VK_SHIFT:
 			Key_Shift_Pressed = true;
@@ -93,6 +100,10 @@ public class UserInput implements KeyListener {
 		case KeyEvent.VK_E:
 			Key_E_Pressed = false;
 			Key_E_Released = true;
+			break;
+		case KeyEvent.VK_F:
+			Key_F_Pressed = false;
+			Key_F_Released = true;
 			break;
 		case KeyEvent.VK_SHIFT:
 			Key_Shift_Pressed = false;

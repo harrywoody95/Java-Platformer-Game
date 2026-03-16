@@ -11,11 +11,13 @@ import Math.Vec2;
 
 public class Valuable extends Item {
 	
+	public ValuableType Type;
 	public Valuable(ValuableType t)
 	{
 		EntityType = Main.Game.EntityType.Item;
-		ItemType = Main.Game.Item.ItemType.Money;
+		ItemType = Main.Game.Item.ItemType.Valuable;
 		Count = 1;
+		Type = t;
 		
 		if(t == ValuableType.Book)
 		{

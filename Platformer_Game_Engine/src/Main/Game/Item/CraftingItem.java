@@ -10,8 +10,8 @@ import Main.Engine.Sprite;
 import Math.Vec2;
 
 public class CraftingItem extends Item {
-	CraftingMaterialRarity CraftingRarity;
-	CraftingMaterial CraftingMaterial;
+	public CraftingMaterialRarity CraftingRarity;
+	public CraftingMaterial CraftingMaterial;
 	
 	public CraftingItem(CraftingMaterialRarity r, CraftingMaterial m)
 	{

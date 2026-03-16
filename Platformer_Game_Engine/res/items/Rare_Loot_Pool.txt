@@ -1,0 +1,13 @@
+#ItemType Then arguments for constructor in order
+Weapon Rare Pistol
+Weapon Rare Shotgun
+Weapon Rare MachineGun
+Valuable GoldRing
+Valuable Necklace
+Sheild Sheild
+Healing Sheild
+Healing HealthKit
+Crafting Average WeaponModule
+Crafting Average GunPart
+Crafting Average SheildPart
+Crafting Advanced GunPart

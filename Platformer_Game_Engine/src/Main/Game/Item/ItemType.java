@@ -6,5 +6,7 @@ public enum ItemType {
  Ammo,
  Crafting,
  Healing,
- Money
+ Valuable
+ 
 }
+

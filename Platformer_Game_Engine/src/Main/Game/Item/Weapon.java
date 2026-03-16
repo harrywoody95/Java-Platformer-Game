@@ -15,7 +15,7 @@ public class Weapon extends Item {
 	int Damage;
 	int Durability;
 	
-	public Weapon(WeaponType wt, Rarity r)
+	public Weapon(Rarity r, WeaponType wt)
 	{
 		if(wt == WeaponType.Pistol)
 		{

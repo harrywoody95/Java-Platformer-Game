@@ -1,0 +1,9 @@
+#ItemType Then arguments for constructor in order
+Weapon Legendary Pistol
+Weapon Legendary Shotgun
+Weapon Legendary MachineGun
+Valuable Diamond
+Valuable GoldBar
+Sheild Sheild
+Crafting Advanced WeaponModule
+Crafting Advanced SheildPart

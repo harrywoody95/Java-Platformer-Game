@@ -50,7 +50,9 @@ public class Chest extends Entity{
 			Collision.box.Bottom = Position.y + 50;
 			Collision.box.Right = Position.x + 47;
 			
-			EntityType = EntityType.Chest;
+			EntityType = Main.Game.EntityType.Chest;
+			Loot = Game.LootGenerator.GenerateLoot(r);
+			//System.out.println(Loot.size());
 			
 			g.EntityList.add(this);
 			g.CollisionBoxList.add(Collision);
@@ -66,8 +68,13 @@ public class Chest extends Entity{
 		{
 			for(Item i : Loot)
 			{
-				g.Player.Inventory.Inventory.add(i);
+				if(!g.Player.Inventory.AddItemToInventory(i))
+				{
+					//drop on floor instead
+					System.out.println("Failed to add : " + i.Name + " To Inventory");
+				}
 			}
+			g.Player.Inventory.PrintInventory();
 		}
 		Opened = true;
 		g.SoundManager.PlaySoundEffect("VeryRareItem");

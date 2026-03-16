@@ -12,7 +12,7 @@ import Math.Vec2;
 import Math.Vec2f;
 
 public class Healing extends Item {
-	HealingType Type;
+	public HealingType Type;
 	int Buff;
 	
 	public Healing (HealingType h)

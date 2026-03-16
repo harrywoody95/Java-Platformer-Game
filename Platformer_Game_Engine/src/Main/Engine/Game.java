@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import Main.Engine.Map.GameMap;
 import Main.Game.*;
+import Main.Game.Item.LootGenerator;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -28,6 +30,7 @@ public class Game extends JPanel implements Runnable{
 	public final static int SCREENWIDTH = TILECOLUMNS * 64; // 20 COLOUMS OF TILES
 	public final static int SCREENHEIGHT = TILEROWS * 64; //15 ROWS OF TILES
 	public final static float gravity = 0.3f;
+	public static LootGenerator LootGenerator = new LootGenerator();
 	
 	public Vector <Animation> AnimationList = new Vector<Animation>();
 	public Vector <CollisionBox> CollisionBoxList = new Vector<CollisionBox>();
@@ -37,7 +40,15 @@ public class Game extends JPanel implements Runnable{
 	Thread GameThread;
 	UserInput UserInput = new UserInput();
 	public Player Player = new Player(this, UserInput);
-	Chest c = new Chest(700, 782, Rarity.Rare, this);
+	Chest c = new Chest(700, 782, Rarity.Common, this);
+	Chest c1 = new Chest(900, 782, Rarity.Rare, this);
+	Chest c2 = new Chest(1100, 782, Rarity.Common, this);
+	Chest c3 = new Chest(1300, 782, Rarity.Rare, this);
+	Chest c4 = new Chest(1500, 782, Rarity.Common, this);
+	Chest c5 = new Chest(1700, 782, Rarity.Rare, this);
+	Chest c6 = new Chest(1900, 782, Rarity.Common, this);
+	Chest c7 = new Chest(2100, 782, Rarity.Rare, this);
+	Chest c8 = new Chest(2300, 782, Rarity.Common, this);
 	public Camera Camera = new Camera();
 	public SoundManager SoundManager = new SoundManager();
 	public boolean DrawDebugBoxes = true;
@@ -49,7 +60,7 @@ public class Game extends JPanel implements Runnable{
 		this.addKeyListener(UserInput);
 		this.setFocusable(true);
 		LoadAnimations();
-		SoundManager.PlayMusic("Music");
+		//SoundManager.PlayMusic("Music");
 	}
 
 	public void StartGameThread()

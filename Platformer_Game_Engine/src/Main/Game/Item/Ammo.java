@@ -11,8 +11,7 @@ import Main.Game.EntityType;
 import Math.Vec2;
 
 public class Ammo extends Item{
-	AmmoType AmmoType;
-	public static int StackSize = 50;
+	public AmmoType AmmoType;
 	public Ammo(AmmoType a) {
 		AmmoType = a;
 		EntityType = Main.Game.EntityType.Item;

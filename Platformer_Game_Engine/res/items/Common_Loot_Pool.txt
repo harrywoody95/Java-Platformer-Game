@@ -1,0 +1,17 @@
+#ItemType Then arguments for constructor in order
+Weapon Common Pistol
+Weapon Common Shotgun
+Weapon Common MachineGun
+Valuable Book
+Valuable PocketWatch
+Sheild Sheild
+Healing Stamina
+Healing HealthShot
+Crafting Simple WeaponModule
+Crafting Simple GunPart
+Crafting Simple SheildPart
+Crafting Simple Metal
+Crafting Simple GunPowder
+Ammo Pistol
+Ammo Rifle
+Ammo Shotgun
