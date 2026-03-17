@@ -9,13 +9,17 @@ import javax.sound.sampled.AudioInputStream;
 
 public class SoundClip {
 	String Name;
+	String Path;
 	URL SoundURL;
+	boolean loop = false;
 	Clip Clip;
 	boolean isPlayerSoundEffect;
 	boolean isSoundEffect;
-	public SoundClip(String Name, String Path, boolean isPlayerSoundEffect, boolean isSoundEffect)
+	public SoundClip(String Name, String Path, boolean isPlayerSoundEffect, boolean isSoundEffect, boolean Loop)
 	{
 	    this.Name = Name;
+	    this.Path = Path;
+	    this.loop = Loop;
 	    this.SoundURL = getClass().getResource(Path);
 	    this.isPlayerSoundEffect = isPlayerSoundEffect;
 	    this.isSoundEffect = isSoundEffect;

@@ -55,12 +55,6 @@ public class Player extends Character {
 
 		Velocity.x = 0;
 		
-		//printiventory
-		if(userInput.Key_F_Pressed)
-		{
-			Inventory.PrintInventory();
-		}
-		
 		// stops the player being able to moonwalk
 		if (userInput.Key_D_Pressed & userInput.Key_A_Pressed) {
 			// lastState = currentState;

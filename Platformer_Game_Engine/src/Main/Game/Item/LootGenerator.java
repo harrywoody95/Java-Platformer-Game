@@ -107,7 +107,7 @@ public class LootGenerator {
 		{
 			NumberOfItems = 1 + (int)(Math.random() * (RareChestDropRates.MaxLoot + 1));
 		}
-		System.out.println("Number of item to gen" + NumberOfItems);
+		//System.out.println("Number of item to gen" + NumberOfItems);
 		
 		for(int x = 0; x < NumberOfItems; x++)
 		{

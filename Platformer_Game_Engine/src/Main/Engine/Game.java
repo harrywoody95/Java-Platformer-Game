@@ -120,6 +120,7 @@ public class Game extends JPanel implements Runnable{
 	{
 		UserInput.Update(this);
 		Camera.Update(Player);
+		SoundManager.Update();
 		for(Entity e : EntityList)
 		{
 			e.Update(this);

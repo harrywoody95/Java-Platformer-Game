@@ -73,11 +73,25 @@ public class Chest extends Entity{
 					//drop on floor instead
 					System.out.println("Failed to add : " + i.Name + " To Inventory");
 				}
+				else
+				{
+					if(i.Rarity == Main.Game.Rarity.Common)
+					{
+						g.SoundManager.PlaySoundEffect("CommonItem");
+					}
+					if(i.Rarity == Main.Game.Rarity.Rare)
+					{
+						g.SoundManager.PlaySoundEffect("RareItem");
+					}
+					if(i.Rarity == Main.Game.Rarity.Legendary)
+					{
+						g.SoundManager.PlaySoundEffect("LegendaryItem");
+					}
+				}
 			}
 			g.Player.Inventory.PrintInventory();
 		}
 		Opened = true;
-		g.SoundManager.PlaySoundEffect("VeryRareItem");
 	}
 	
 	public void Update(Game g)

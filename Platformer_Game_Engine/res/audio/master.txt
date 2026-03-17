@@ -5,6 +5,6 @@ Open /audio/open.wav ptrue
 Run /audio/run.wav ptrue
 Walk /audio/walk.wav ptrue
 Music /audio/music.wav false
-CommonItem /audio/commonItem.wav true
-RareItem /audio/rareItem.wav true
-VeryRareItem /audio/veryRareItem.wav true
+CommonItem /audio/Common_Item.wav true
+RareItem /audio/Rare_Item.wav true
+LegendaryItem /audio/Legendary_Item.wav true
