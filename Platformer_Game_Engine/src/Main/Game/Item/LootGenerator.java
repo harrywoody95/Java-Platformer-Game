@@ -165,20 +165,44 @@ public class LootGenerator {
 	private String GetRandomItem(Rarity r) {
 	    float RandomNumber = (float)Math.random();
 	    DropChance dc = CommonChestDropRates;
+	    String s = "";
 	    if(r == Rarity.Rare)
 	    {
 	    	dc = RareChestDropRates;
 	    }
+	    int WeaponChance = 0;
+	    if(r == Rarity.Common)
+    	{
+	    	WeaponChance = 3;
+    	}
+	    else
+	    {
+	    	WeaponChance = 1;
+	    }
+	    
+	    for (int i = 0; i < WeaponChance; i++) {
 
 	    if (RandomNumber < dc.LegendaryDropChance) {
-	        return LegendaryPool.get((int)(Math.random() * LegendaryPool.size()));
+	        s = LegendaryPool.get((int)(Math.random() * LegendaryPool.size()));
 	    }
 	    else if (RandomNumber < dc.LegendaryDropChance + dc.RareDropChance) {
-	        return RarePool.get((int)(Math.random() * RarePool.size()));
+	        s = RarePool.get((int)(Math.random() * RarePool.size()));
 	    }
 	    else {
-	        return CommonPool.get((int)(Math.random() * CommonPool.size()));
+	        s = CommonPool.get((int)(Math.random() * CommonPool.size()));
 	    }
+	    
+	    if(s.startsWith("Weapon"))
+	    {
+	    	continue;
+	    }
+	    else
+	    {
+	    	break;
+	    }
+	    
+	    }
+	    return s;  
 	}
 
 	

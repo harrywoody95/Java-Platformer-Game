@@ -17,7 +17,7 @@ public class Player extends Character {
 	Game game;
 	UserInput userInput;
 	Vec2f tmp = new Vec2f(0.0f, 0.0f);
-	Inventory Inventory = new Inventory();
+	public Inventory Inventory = new Inventory();
 
 	public void SetDefaultValues(Game g) {
 		Position.x = 400;
@@ -54,6 +54,17 @@ public class Player extends Character {
 	public void HandleUserInput(Game g) {
 
 		Velocity.x = 0;
+		//active inventory
+		
+		if(userInput.Key_Tab_Released)
+		{
+			g.InventoryUIActive = !g.InventoryUIActive;
+		}
+		
+		//if inventory active stop movement
+		if(g.InventoryUIActive)
+		{return;}
+		
 		
 		// stops the player being able to moonwalk
 		if (userInput.Key_D_Pressed & userInput.Key_A_Pressed) {
@@ -193,7 +204,7 @@ public class Player extends Character {
 
 	public void Update(Game g) {
 		UpdateCollisionBox();
-		HandleUserInput(g);
+		//HandleUserInput(g);
 
 		if (!onGround) {
 			Velocity.y += Game.gravity;

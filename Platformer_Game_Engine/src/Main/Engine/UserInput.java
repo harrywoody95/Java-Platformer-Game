@@ -2,8 +2,12 @@ package Main.Engine;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class UserInput implements KeyListener {
+import javax.swing.event.MouseInputListener;
+
+public class UserInput implements KeyListener, MouseListener, MouseInputListener {
 
 	public boolean Key_W_Pressed = false;
 	public boolean Key_S_Pressed = false;
@@ -11,6 +15,7 @@ public class UserInput implements KeyListener {
 	public boolean Key_D_Pressed = false;
 	public boolean Key_E_Pressed = false;
 	public boolean Key_F_Pressed = false;
+	public boolean Key_Tab_Pressed = false;
 	public boolean Key_Shift_Pressed = false;
 	public boolean Key_Space_Pressed = false;
 	
@@ -20,8 +25,23 @@ public class UserInput implements KeyListener {
 	public boolean Key_D_Released = false;
 	public boolean Key_E_Released = false;
 	public boolean Key_F_Released = false;
+	public boolean Key_Tab_Released = false;
 	public boolean Key_Shift_Released = false;
 	public boolean Key_Space_Released = false;
+	
+    public int MouseX = 0;
+    public int MouseY = 0;
+    
+    public int MouseClickX = 0;
+    public int MouseClickY = 0;
+
+    public boolean Mouse_Left_Pressed = false;
+    public boolean Mouse_Right_Pressed = false;
+
+    public boolean Mouse_Left_Released = false;
+    public boolean Mouse_Right_Released = false;
+    
+
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -30,16 +50,7 @@ public class UserInput implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		//reset release values
-		Key_W_Released = false;
-		Key_S_Released = false;
-		Key_D_Released = false;
-		Key_A_Released = false;
-		Key_E_Released = false;
-		Key_F_Released = false;
-		Key_Shift_Released = false;
-		Key_Space_Released = false;
-		
+
 		int key = e.getKeyCode();
 		
 		switch(key)
@@ -62,6 +73,9 @@ public class UserInput implements KeyListener {
 		case KeyEvent.VK_F:
 			Key_F_Pressed = true;
 			break;
+		case KeyEvent.VK_TAB:
+			Key_Tab_Pressed = true;
+			break;
 		case KeyEvent.VK_SHIFT:
 			Key_Shift_Pressed = true;
 			break;
@@ -78,7 +92,7 @@ public class UserInput implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
-		
+
 		switch(key)
 		{
 		case KeyEvent.VK_W:
@@ -105,6 +119,10 @@ public class UserInput implements KeyListener {
 			Key_F_Pressed = false;
 			Key_F_Released = true;
 			break;
+		case KeyEvent.VK_TAB:
+			Key_Tab_Pressed = false;
+			Key_Tab_Released = true;
+			break;
 		case KeyEvent.VK_SHIFT:
 			Key_Shift_Pressed = false;
 			Key_Shift_Released = true;
@@ -120,9 +138,64 @@ public class UserInput implements KeyListener {
 		
 	}
 	
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1)
+            Mouse_Left_Pressed = true;
+        	MouseClickX = MouseX;
+        	MouseClickY = MouseY;
+
+        if (e.getButton() == MouseEvent.BUTTON3)
+            Mouse_Right_Pressed = true;
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON1) {
+            Mouse_Left_Pressed = false;
+            Mouse_Left_Released = true;
+        }
+
+        if (e.getButton() == MouseEvent.BUTTON3) {
+            Mouse_Right_Pressed = false;
+            Mouse_Right_Released = true;
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        MouseX = e.getX();
+        MouseY = e.getY();
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        MouseX = e.getX();
+        MouseY = e.getY();
+    }
+
+    @Override public void mouseClicked(MouseEvent e) {}
+    @Override public void mouseEntered(MouseEvent e) {}
+    @Override public void mouseExited(MouseEvent e) {}
+
+	
 	public void Update(Game game)
 	{
 
 	}
 
+	public void Reset()
+	{
+		Key_W_Released = false;
+		Key_S_Released = false;
+		Key_D_Released = false;
+		Key_A_Released = false;
+		Key_E_Released = false;
+		Key_F_Released = false;
+		Key_Shift_Released = false;
+		Key_Space_Released = false;
+		Key_Tab_Released = false;
+		Mouse_Right_Released = false;
+		Mouse_Left_Released  = false;
+	}
 }

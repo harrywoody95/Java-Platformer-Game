@@ -3,8 +3,13 @@ package Main.Engine;
 import java.awt.Color;
 
 import Main.Engine.Map.GameMap;
+import Main.Engine.UI.UI;
+import Main.Engine.UI.UIElement;
+import Main.Engine.UI.UIType;
 import Main.Game.*;
 import Main.Game.Item.LootGenerator;
+import Math.Vec2;
+import Math.Vec2f;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -35,10 +40,11 @@ public class Game extends JPanel implements Runnable{
 	public Vector <Animation> AnimationList = new Vector<Animation>();
 	public Vector <CollisionBox> CollisionBoxList = new Vector<CollisionBox>();
 	public Vector <Entity> EntityList = new Vector<Entity>();
+	public Vector <UI> UIList = new Vector<UI>();
 	public CollisionManager CollisionManager = new CollisionManager();
 	public GameMap map = new GameMap(this);
 	Thread GameThread;
-	UserInput UserInput = new UserInput();
+	public UserInput UserInput = new UserInput();
 	public Player Player = new Player(this, UserInput);
 	Chest c = new Chest(700, 782, Rarity.Common, this);
 	Chest c1 = new Chest(900, 782, Rarity.Rare, this);
@@ -52,14 +58,20 @@ public class Game extends JPanel implements Runnable{
 	public Camera Camera = new Camera();
 	public SoundManager SoundManager = new SoundManager();
 	public boolean DrawDebugBoxes = true;
+	public boolean InventoryUIActive = false;
 	
 	public Game() {
 		this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
 		this.setBackground(Color.black);
 		this.setDoubleBuffered(true);
 		this.addKeyListener(UserInput);
+		this.addMouseListener(UserInput);
+		this.addMouseMotionListener(UserInput);
+
 		this.setFocusable(true);
-		LoadAnimations();
+		this.setFocusTraversalKeysEnabled(false);
+
+		LoadGame();
 		//SoundManager.PlayMusic("Music");
 	}
 
@@ -121,10 +133,23 @@ public class Game extends JPanel implements Runnable{
 		UserInput.Update(this);
 		Camera.Update(Player);
 		SoundManager.Update();
+		if(InventoryUIActive)
+		{
+			for(UI ui : UIList)
+			{
+				//if active
+				ui.HandleUserInput(this);
+			}
+		}
+		else
+		{
+			Player.HandleUserInput(this);
+		}
 		for(Entity e : EntityList)
 		{
 			e.Update(this);
 		}
+		UserInput.Reset();
 	}
 	
 	public void paintComponent (Graphics g)
@@ -142,6 +167,14 @@ public class Game extends JPanel implements Runnable{
 			 { 
 				 g2.drawRect((int)(b.box.Left - Camera.cameraX), (int)(b.box.Top - Camera.cameraY), (int)(b.box.Right - b.box.Left), (int)(b.box.Bottom - b.box.Top) ); 
 			 }
+		}
+		for(UI u : UIList )
+		{
+			if(InventoryUIActive && u.Name.equals("Inventory"))
+			{
+				Player.Inventory.SyncInventoryUI(this);
+				Player.Inventory.DrawInventoryUI(u, this, g2);
+			}
 		}
 		
 		
@@ -191,5 +224,58 @@ public class Game extends JPanel implements Runnable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+	}
+	
+	public void LoadUI()
+	{
+		Vector <String> FilePaths = new Vector <String>();
+		Vector <String> UIName = new Vector <String>();
+		try {
+		InputStream is = getClass().getResourceAsStream("/ui/master.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		String Line = br.readLine();
+		while (Line != null)
+		{
+			if (Line.charAt(0) == '#')
+			{
+				Line = br.readLine();
+				continue;
+			}
+			
+			else
+			{
+				String[] s = Line.split(" ");
+				UIName.add(s[0].strip());
+				FilePaths.add(s[1].strip());
+				Line = br.readLine();
+			}
+	
+		}
+				br.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		int index = 0;
+		for(String Path : FilePaths)
+		{
+			if(UIName.get(index).equals("Inventory"))
+			{
+				Vector <UIElement> e = new Vector<UIElement> ();
+				UI ui = new UI("Inventory", e);
+				ui.LoadInventoryUI(Path);
+				UIList.add(ui);
+			}
+			index++;
+		}
+		
+
+
+	}
+	
+	public void LoadGame()
+	{
+		LoadAnimations();
+		LoadUI();
 	}
 }

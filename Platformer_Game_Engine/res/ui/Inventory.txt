@@ -1,0 +1,9 @@
+#instead of spaces use '~' Must be in draw order
+#Name type imagePath text textsize bitsize x y, position x y, scale
+Panel Sprite /ui/Inventory_Panel_Brown_2.png null 0 190 200 260 0 4
+InventoryTitle Text null 'Inventory' 40 20 20 575 165 1
+HealSlot1 Sprite /ui/Healing_Icon_Brown.png null 0 32 32 300 220 2
+HealSlot2 Sprite /ui/Healing_Icon_Brown.png null 0 32 32 395 220 2
+SheildSlot Sprite /ui/Sheild_Icon_Brown.png null 0 32 32 347 315 2
+WeaponSlot1 Sprite /ui/Weapon_Icon_Brown.png null 0 32 32 347 465 2
+WeaponSlot2 Sprite /ui/Weapon_Icon_Brown.png null 0 32 32 347 615 2

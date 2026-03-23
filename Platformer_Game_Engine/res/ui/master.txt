@@ -1,0 +1,2 @@
+#path to UI
+Inventory /ui/Inventory.txt
