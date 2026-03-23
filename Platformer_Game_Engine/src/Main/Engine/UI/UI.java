@@ -516,9 +516,9 @@ public class UI {
 			{
 				if(DraggedItem.Item.ItemType == ItemType.Healing)
 				{
-					Healing Primary = (Healing)Inventory.PrimaryHealSlot;
+					Healing Secondary = (Healing)Inventory.SecondaryHealSlot;
 					Healing Drag = (Healing)DraggedItem.Item; 
-					if(Drag.Type != Primary.Type)
+					if(Drag.Type != Secondary.Type)
 					{
 						if(DraggedItem.Item == Inventory.SecondaryHealSlot)
 						{
