@@ -11,7 +11,7 @@ import Main.Game.Rarity;
 import Math.Vec2;
 
 public class Weapon extends Item {
-	WeaponType Type;
+	public WeaponType Type;
 	int Damage;
 	int Durability;
 	

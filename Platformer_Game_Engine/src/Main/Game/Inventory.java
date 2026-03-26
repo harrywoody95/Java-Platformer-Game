@@ -31,6 +31,8 @@ public class Inventory {
 	public Item PrimaryHealSlot = null;
 	public Item SecondaryHealSlot = null;
 	
+	public boolean ChangedWeapon = false;
+	
 	public Vector<Item> Inventory = new Vector<Item>();
 	
 	public boolean AddItemToInventory(Item i)
@@ -121,6 +123,8 @@ public class Inventory {
 		{
 			if(PrimaryGunSlot == null)
 			{
+				//this is for animation. see setplayeranimation for more
+				ChangedWeapon = true;
 				PrimaryGunSlot = i;
 				return true;
 			}

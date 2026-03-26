@@ -272,6 +272,8 @@ public class UI {
 				if(DraggedItem.Item.ItemType == ItemType.Weapon)
 				{
 					Inventory.PrimaryGunSlot = DraggedItem.Item;
+					//for animation - see setplayer animation
+					Inventory.ChangedWeapon = true;
 					
 					if(DraggedFrom.Name.equals("WeaponSlot2"))
 					{
@@ -415,6 +417,9 @@ public class UI {
 					Item i = Inventory.PrimaryGunSlot;
 					Inventory.PrimaryGunSlot = DraggedItem.Item;
 					
+					//for animation - see setplayer animation
+					Inventory.ChangedWeapon = true;
+					
 					if(DraggedFrom.Name.equals("WeaponSlot2"))
 					{
 						Inventory.SecondaryGunSlot = i;
@@ -439,6 +444,9 @@ public class UI {
 					}
 					Item i = Inventory.SecondaryGunSlot;
 					Inventory.SecondaryGunSlot = DraggedItem.Item;
+					
+					//for animation - see setplayer animation
+					Inventory.ChangedWeapon = true;
 					
 					if(DraggedFrom.Name.equals("WeaponSlot1"))
 					{

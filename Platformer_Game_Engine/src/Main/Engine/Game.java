@@ -8,6 +8,7 @@ import Main.Engine.UI.UIElement;
 import Main.Engine.UI.UIType;
 import Main.Game.*;
 import Main.Game.Item.LootGenerator;
+import Main.Game.Item.WeaponType;
 import Math.Vec2;
 import Math.Vec2f;
 
@@ -59,6 +60,7 @@ public class Game extends JPanel implements Runnable{
 	public SoundManager SoundManager = new SoundManager();
 	public boolean DrawDebugBoxes = true;
 	public boolean InventoryUIActive = false;
+	Projectile Bullet = new Projectile(this, 30, 15, 200, 740, Direction.Right, WeaponType.Pistol);
 	
 	public Game() {
 		this.setPreferredSize(new Dimension(SCREENWIDTH, SCREENHEIGHT));
@@ -184,6 +186,7 @@ public class Game extends JPanel implements Runnable{
 	
 	public void LoadAnimations()
 	{
+		System.out.println("Loading Animations");
 			try {
 			InputStream is = getClass().getResourceAsStream("/animation/animations.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(is));

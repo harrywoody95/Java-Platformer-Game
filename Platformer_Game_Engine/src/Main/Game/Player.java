@@ -2,6 +2,8 @@ package Main.Game;
 
 import Main.Engine.*;
 import Main.Game.Item.Item;
+import Main.Game.Item.Weapon;
+import Main.Game.Item.WeaponType;
 import Math.Vec2;
 import Math.Vec2f;
 
@@ -156,50 +158,61 @@ public class Player extends Character {
 	}
 
 	public void SetPlayerAnimation(Game g) {
-
-		if (lastState == currentState) {
+		String Weapon = "";
+		String state = "";
+		String direction = "";
+		boolean loop = true;
+		if(Inventory.PrimaryGunSlot != null)
+		{
+			Weapon w = (Weapon)Inventory.PrimaryGunSlot;
+			if(w.Type == WeaponType.MachineGun)
+			{
+				Weapon = "MachineGun";
+			}
+			else if (w.Type == WeaponType.Shotgun)
+			{
+				Weapon = "Shotgun";
+			}
+			else
+			{
+				Weapon = "Pistol";
+			}
+		}
+		
+		if (lastState == currentState && Inventory.ChangedWeapon == false) {
 			return;
+		}
+		
+		if(currentDirection == Direction.Left)
+		{
+			direction = "Left";
+		}
+		else
+		{
+			direction = "Right";
 		}
 
 		if (currentState == State.Idle) {
-			if (currentDirection == Direction.Left) {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftIdle", true);
-			} else {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightIdle", true);
-			}
-
+			state = "Idle";
 		} else if (currentState == State.Walking) {
-			if (currentDirection == Direction.Left) {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftWalk", true);
-			} else {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightWalk", true);
-			}
-
+			state = "Walk";
 		} else if (currentState == State.Running) {
-			if (currentDirection == Direction.Left) {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftRun", true);
-			} else {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightRun", true);
-			}
+			state = "Run";
 		} else if (currentState == State.Jumping) {
-			if (currentDirection == Direction.Left) {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftJump", false);
-			} else {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightJump", false);
-			}
+			state = "Jump";
+			loop = false;
 		} else if (currentState == State.Falling) {
-			if (currentDirection == Direction.Left) {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftFall", false);
-			} else {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightFall", false);
-			}
+			state = "Fall";
+			loop = false;
 		} else if (currentState == State.Looting) {
-			if (currentDirection == Direction.Left) {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "LeftLoot", false);
-			} else {
-				Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, "RightLoot", false);
-			}
+			state = "Loot";
+			loop = false;
+			Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, direction+state, loop);
+			Inventory.ChangedWeapon = false;
+			return;
 		}
+		Main.Engine.Sprite.StartSpriteAnimation(g, Sprite, direction+Weapon+state, loop);
+		Inventory.ChangedWeapon = false;
 	}
 
 	public void Update(Game g) {
